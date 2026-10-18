@@ -1,0 +1,80 @@
+:root {
+  --ink: #0b0d12;
+  --ink-2: #3a4050;
+  --muted: #5f6677;
+  --faint: #8a90a0;
+  --line: #e5e7ee;
+  --canvas: #f6f7fa;
+  --paper: #fff;
+  --blue: #064bef;
+  --ok: #12a26b;
+  --warn: #d98a00;
+  --risk: #e5484d;
+  --empty: #e9ebf1;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 15px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.shell { width: 100%; max-width: 52rem; margin: 0 auto; padding: 0 1.25rem; }
+.muted { color: var(--muted); }
+
+.top { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
+.brand { display: flex; align-items: center; gap: .55rem; text-decoration: none; }
+.mark { height: 24px; width: auto; }
+.word { font-weight: 650; letter-spacing: .04em; font-size: 15px; }
+.sep { width: 1px; height: 18px; background: var(--line); margin: 0 .2rem; }
+.label { color: var(--muted); font-weight: 500; }
+.contact { font-size: 14px; font-weight: 600; text-decoration: none; padding: .45rem .9rem; border: 1px solid var(--line); border-radius: 999px; }
+.contact:hover { border-color: #b9bfcc; }
+
+.banner { display: flex; gap: 1rem; align-items: center; margin: 2rem 0 2.5rem; padding: 1.4rem 1.5rem; border-radius: 1.25rem; background: var(--canvas); border: 1px solid var(--line); }
+.banner h1 { margin: 0; font-size: 1.35rem; letter-spacing: -.01em; }
+.banner p { margin: .15rem 0 0; font-size: 13px; }
+.dot { width: 14px; height: 14px; border-radius: 50%; background: var(--faint); flex: none; box-shadow: 0 0 0 6px rgb(138 144 160 / .15); }
+.banner.operational { background: #effaf5; border-color: #c8ecd9; }
+.banner.operational .dot { background: var(--ok); box-shadow: 0 0 0 6px rgb(18 162 107 / .15); }
+.banner.degraded { background: #fff8eb; border-color: #f3dfb5; }
+.banner.degraded .dot { background: var(--warn); box-shadow: 0 0 0 6px rgb(217 138 0 / .15); }
+.banner.outage { background: #fff1f1; border-color: #f5c9cb; }
+.banner.outage .dot { background: var(--risk); box-shadow: 0 0 0 6px rgb(229 72 77 / .15); }
+
+.group { margin-bottom: 1.75rem; border: 1px solid var(--line); border-radius: 1.25rem; overflow: hidden; }
+.group h2 { margin: 0; padding: .8rem 1.25rem; font-size: 12px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); background: var(--canvas); border-bottom: 1px solid var(--line); }
+.svc { padding: 1.1rem 1.25rem 1rem; }
+.svc + .svc { border-top: 1px solid var(--line); }
+.svc-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.svc-name { font-weight: 600; }
+.state { font-size: 13px; font-weight: 600; }
+.state.up { color: var(--ok); }
+.state.degraded { color: var(--warn); }
+.state.down { color: var(--risk); }
+.bars { display: flex; gap: 2px; margin: .75rem 0 .4rem; height: 32px; }
+.bars span { flex: 1; border-radius: 2px; background: var(--empty); }
+.bars span.g { background: var(--ok); }
+.bars span.y { background: var(--warn); }
+.bars span.r { background: var(--risk); }
+.bars span:hover { opacity: .75; }
+.svc-foot { display: flex; justify-content: space-between; font-size: 12px; color: var(--faint); }
+
+.incidents h2 { font-size: 1.1rem; margin: 2.5rem 0 .75rem; }
+.incidents ul { list-style: none; padding: 0; margin: 0; border: 1px solid var(--line); border-radius: 1.25rem; }
+.incidents li { padding: .9rem 1.25rem; font-size: 14px; }
+.incidents li + li { border-top: 1px solid var(--line); }
+.incidents .when { color: var(--muted); font-size: 13px; }
+
+.note { margin: 2rem 0 0; font-size: 13px; }
+.foot { display: flex; gap: 1.25rem; padding-top: 2.5rem; padding-bottom: 2.5rem; font-size: 13px; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--ink); }
+
+@media (max-width: 560px) {
+  .bars span:nth-child(-n + 45) { display: none; }
+}

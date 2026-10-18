@@ -1,0 +1,69 @@
+name: Status
+
+# Checks every Solvex service from GitHub (outside our cloud) every ten
+# minutes and publishes status.solvex.work on GitHub Pages. History lives on
+# the `data` branch as a single, force-pushed commit, so the repo never grows.
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: status
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Test the rules
+        run: node --test test/*.test.mjs
+
+      - name: Restore history
+        run: |
+          mkdir -p data
+          if git fetch --depth=1 origin data 2>/dev/null; then git show FETCH_HEAD:status.json > data/status.json; else echo "No history yet; starting fresh"; fi
+
+      - name: Check services
+        run: node check.mjs
+
+      - name: Save history
+        run: |
+          cp data/status.json "$RUNNER_TEMP/status.json"
+          git config user.name "solvex-status"
+          git config user.email "solvex-status@users.noreply.github.com"
+          git worktree add --detach "$RUNNER_TEMP/data"
+          cd "$RUNNER_TEMP/data"
+          git checkout --orphan data-next
+          git rm -rfq .
+          cp "$RUNNER_TEMP/status.json" status.json
+          git add status.json
+          git commit -qm "Status at $(date -u +%FT%TZ)"
+          git push -fq origin data-next:data
+
+      - name: Build the page
+        run: cp data/status.json site/status.json
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - id: deploy
+        uses: actions/deploy-pages@v4

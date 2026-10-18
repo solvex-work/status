@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Solvex Status</title>
+    <meta name="description" content="Live status and 90-day uptime of Solvex services, including Radar." />
+    <link rel="icon" href="icon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="shell top">
+      <a href="https://solvex.work" class="brand" aria-label="Solvex">
+        <svg viewBox="0 0 92.5 72" class="mark" aria-hidden="true">
+          <g transform="translate(.6 .6) scale(.393333333)">
+            <path d="M232 0H166L94 90L166 180H232L160 90Z" fill="#064BEF" />
+            <path d="M0 0H66L138 90L66 180H0L72 90Z" fill="#0b0d12" stroke="#fff" stroke-width="2.4" />
+          </g>
+        </svg>
+        <span class="word">SOLVEX</span>
+        <span class="sep" aria-hidden="true"></span>
+        <span class="label">Status</span>
+      </a>
+      <a href="https://solvex.work/contact" class="contact">Report a problem</a>
+    </header>
+
+    <main class="shell" id="main">
+      <section id="banner" class="banner" aria-live="polite">
+        <span class="dot"></span>
+        <div>
+          <h1 id="headline">Checking services…</h1>
+          <p id="updated" class="muted"></p>
+        </div>
+      </section>
+
+      <section id="groups" class="groups"></section>
+
+      <section class="incidents">
+        <h2>Recent incidents</h2>
+        <ul id="incidents"><li class="muted">Loading…</li></ul>
+      </section>
+
+      <p class="note muted">
+        Every service is checked from outside our cloud every ten minutes. One failed check shows as degraded; two in a row count as an outage. Questions?
+        <a href="https://solvex.work/contact">Talk to us</a>.
+      </p>
+    </main>
+
+    <footer class="shell foot muted">
+      <span>© <span id="year"></span> Solvex</span>
+      <a href="https://solvex.work/privacy">Privacy</a>
+      <a href="https://solvex.work/security">Security</a>
+    </footer>
+    <script src="app.js" defer></script>
+  </body>
+</html>

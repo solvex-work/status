@@ -1,0 +1,14 @@
+[
+  {
+    "id": "radar",
+    "name": "Radar",
+    "group": "Radar",
+    "url": "https://radar.solvex.work/"
+  },
+  {
+    "id": "radar-signin",
+    "name": "Radar sign-in",
+    "group": "Radar",
+    "url": "https://radar.solvex.work/login"
+  }
+]
