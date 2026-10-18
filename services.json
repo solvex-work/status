@@ -1,5 +1,11 @@
 [
   {
+    "id": "website",
+    "name": "solvex.work",
+    "group": "Solvex",
+    "url": "https://solvex.work/api/health"
+  },
+  {
     "id": "radar",
     "name": "Radar",
     "group": "Radar",
