@@ -9,7 +9,7 @@
     "id": "radar",
     "name": "Radar",
     "group": "Radar",
-    "url": "https://radar.solvex.work/"
+    "url": "https://radar.solvex.work/api/health"
   },
   {
     "id": "radar-signin",

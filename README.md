@@ -2,7 +2,7 @@
 
 The public status page at **status.solvex.work**.
 
-- `services.json` — what is checked. Switch Radar to `/api/health` after the release that adds it.
+- `services.json` — what is checked.
 - `check.mjs` — checks every service once and updates `data/status.json` (rules in `lib.mjs`, tests in `test/`).
 - `site/` — the static page that renders `status.json`.
 - `.github/workflows/status.yml` — runs every ten minutes on GitHub Actions, keeps the history on the `data` branch and publishes `site/` to GitHub Pages.
